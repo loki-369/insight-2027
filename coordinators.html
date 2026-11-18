@@ -1,0 +1,334 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Global Reset for better sizing */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary-blue: #386641;
+        /* Visible Forest Green */
+        --accent-blue: #6a994e;
+        /* Lighter Green */
+        --light-bg: #f5f7fa;
+        --card-bg: #ffffff;
+        --text-dark: #1b261b;
+        --text-light: #7f8c8d;
+        --border-radius: 12px;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        font-family: 'Poppins', Arial, Helvetica, sans-serif;
+        /* Prioritize Poppins as per import */
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    /* Section Titles */
+    .category-title {
+        text-align: center;
+        color: var(--primary-blue);
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        /* Consistent weight */
+        font-size: 1.5rem;
+        /* Adjusted for hierarchy */
+    }
+
+    .section-title {
+        text-align: center;
+        color: var(--primary-blue);
+        font-size: 2rem;
+        /* Distinct size */
+        margin-bottom: 30px;
+        margin-top: 60px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    /* Card Styles */
+    .card {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 4px solid var(--primary-blue);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .card-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin: 5px 0;
+    }
+
+    .card-designation {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .card-role {
+        font-size: 0.85rem;
+        color: var(--accent-blue);
+        font-style: italic;
+    }
+
+
+    /* Grids */
+    .grid-1 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .chief-card {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Lists */
+    .list-section {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        border-left: 5px solid var(--primary-blue);
+        margin-top: 20px;
+    }
+
+    .bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .bullet-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .bullet-list li:last-child {
+        border-bottom: none;
+    }
+
+    .bullet-list li::before {
+        content: '•';
+        color: var(--accent-blue);
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        line-height: 1;
+    }
+
+    .multi-col-list {
+        column-count: 2;
+        column-gap: 40px;
+    }
+
+    .multi-col-list li {
+        font-weight: 500;
+        break-inside: avoid;
+        /* Prevent split lines */
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .grid-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .grid-3,
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
+
+        .multi-col-list {
+            column-count: 1;
+        }
+
+        .container {
+            padding: 15px 10px;
+        }
+
+        .card {
+            padding: 15px;
+        }
+
+        .card-name {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+
+<div class="container">
+    <h1 class="section-title">Our Coordinators</h1>
+
+    <!-- Chief Patron -->
+    <h2 class="category-title">Chief Patron</h2>
+    <div class="grid-1">
+        <div class="card chief-card">
+            <div class="card-name">Dr. P A Fazal Ghafoor</div>
+            <div class="card-designation">President, MES Kerala</div>
+        </div>
+    </div>
+
+    <!-- Patrons -->
+    <h2 class="category-title">Patrons</h2>
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-name">Jb. K K Kunjimoideen</div>
+            <div class="card-designation">General Secretary</div>
+            <div class="card-role">MES Kerala</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Jb. O C Salahudheen</div>
+            <div class="card-designation">Treasurer</div>
+            <div class="card-role">MES Kerala</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Dr. K A Hashim</div>
+            <div class="card-designation">Corporate Manager</div>
+            <div class="card-role">MES Kerala</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Abdul Latheef K</div>
+            <div class="card-designation">GST Joint Commissioner</div>
+            <div class="card-role">Malappuram</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Dr. Mohamedali P</div>
+            <div class="card-designation">Secretary</div>
+            <div class="card-role">MES Keveeyam College</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Prof. Parayil Moideenkutty</div>
+            <div class="card-designation">Treasurer</div>
+            <div class="card-role">MES Keveeyam College</div>
+        </div>
+    </div>
+
+    <!-- Chairman & Coordinator -->
+    <h2 class="category-title">Chairman & Coordinator</h2>
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-name">Prof. Shajid P P</div>
+            <div class="card-designation">Principal (Chairman)</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Dr. Nabeel Rashin M</div>
+            <div class="card-designation">Coordinator</div>
+        </div>
+    </div>
+
+    <!-- Joint Coordinators -->
+    <h2 class="category-title">Joint Coordinators</h2>
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-name">Dr. K S Krishna Prabha</div>
+            <div class="card-designation">Joint Coordinator</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Dr. Navas M P</div>
+            <div class="card-designation">Joint Coordinator</div>
+        </div>
+    </div>
+
+    <!-- IQAC Coordinator -->
+    <h2 class="category-title">IQAC Coordinator</h2>
+    <div class="grid-1">
+        <div class="card" style="max-width: 400px; width:100%">
+            <div class="card-name">Dr. Nisab T</div>
+            <div class="card-designation">IQAC Coordinator</div>
+        </div>
+    </div>
+
+    <!-- International Advisory Committee -->
+    <h2 class="category-title">International Advisory Committee</h2>
+    <div class="list-section">
+        <ul class="bullet-list">
+            <li>Dr. P Sushtitha Menon, UKM, Malaysia</li>
+            <li>Dr. Ratheesh Kumar Meleppat, University of California, USA</li>
+            <li>Dr. Safakath Karuthedath, Tsinghua University, China</li>
+            <li>Dr. Prakash Karipoth, University of Leeds, UK</li>
+            <li>Dr. Thien-Binh Nguyen, NTU Singapore</li>
+            <li>Dr. Krishna Kumar Chullipalliyalil, Cork Institute of Technology, Ireland</li>
+            <li>Dr. Manoop Chenchiliyan, MAX IV Laboratory, Sweden</li>
+            <li>Dr. Sabu Thomas, Professor, School of Chemical Sciences, MG University, Kottayam</li>
+            <li>Dr. Sajeev Krishnan, Professor, Centre for Earth Sciences, IISc, Bangalore</li>
+            <li>Dr. Sujith A, Department of Chemistry, NIT Calicut</li>
+            <li>Dr. Vinod Kumar K P, Former Principal, MES Keveeyam College, Valanchery</li>
+        </ul>
+    </div>
+
+    <!-- Organizing Committee -->
+    <h2 class="category-title">Organizing Committee</h2>
+    <div class="list-section">
+        <ul class="bullet-list multi-col-list">
+            <li>Dinil S</li>
+            <li>Dr. Priya T V</li>
+            <li>Dr. Reji A L</li>
+            <li>Sajna P</li>
+            <li>Jameela MK</li>
+            <li>Dr. Maya R</li>
+            <li>Dr. Sandhya PD</li>
+            <li>Sabitha V</li>
+            <li>Rasbin</li>
+            <li>Vishnupriya</li>
+            <li>Sreehari V R</li>
+            <li>Ashika T N</li>
+        </ul>
+    </div>
+</div>

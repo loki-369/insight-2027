@@ -1,0 +1,184 @@
+/* Insight 2025 – static replica.
+   Layout model (same as the Wix original): every block is placed at left:50% + offset
+   inside a full-width section, so the design stays centered on any screen width. */
+
+:root {
+  /* Three fonts used by the original (Avenir LT, Nimbus Sans Condensed, Lulo Clean One Bold)
+     are Wix-licensed and cannot be reused off-Wix. These are the closest free matches;
+     replace them here if you have licensed copies. */
+  --font-lulo: 'Krona One', sans-serif;
+  --font-avenir: 'Nunito Sans', sans-serif;
+  --font-nimbus: 'Archivo Narrow', 'Arial Narrow', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px; /* sticky header height */
+}
+
+body {
+  margin: 0;
+  min-width: 980px;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, p { margin: 0; font-weight: inherit; }
+a { color: inherit; }
+img { border: 0; }
+
+.a { position: absolute; }
+
+/* ------------------------------------------------------------------ header */
+#site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 84px;
+}
+#site-header .hbar { position: absolute; inset: 0; background: #A4CC8D; transition: opacity .3s ease; }
+/* the original header is only green at the very top of the page and turns transparent as soon as you scroll */
+#site-header.scrolled .hbar { opacity: 0; }
+#site-header .a img { display: block; width: 100%; height: 100%; }
+.hlogo-box {
+  background: #fff;
+  border: 4.57px solid #fff;
+  border-radius: 20px;
+}
+.hlogo-box img { display: block; width: 48px; height: 38px; }
+
+/* ---------------------------------------------------------------- sections */
+.sec { position: relative; width: 100%; overflow: hidden; }
+.bgimg {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.wv {
+  position: absolute; left: 0; width: 100%;
+  background-repeat: repeat-x;
+  background-position: 50% 100%;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------- buttons */
+.btn, .btn2, .pill, .up {
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; cursor: pointer;
+}
+.t-btn {
+  font-family: 'Prompt', sans-serif; font-weight: 700; text-transform: uppercase;
+  white-space: nowrap; line-height: normal;
+}
+.btn { transition: background-color .2s, border-color .2s, color .2s; }
+.pill {
+  background: #CFE6C2; border: .57px solid #293323; border-radius: 120px;
+  transition: background-color .2s, color .2s;
+}
+.pill span {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px;
+  letter-spacing: 1.3px; color: #293323; white-space: nowrap; line-height: normal;
+}
+.btn2 { background: #7B996A; border-radius: 10px; transition: background-color .2s; }
+.btn2 span {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px;
+  color: #000; white-space: nowrap; line-height: normal;
+}
+
+/* ------------------------------------------------------------- topic lists */
+.lst { position: absolute; inset: 0; margin: 0; padding: 0; list-style: disc outside; pointer-events: none; }
+.li { display: list-item; margin: 0; }
+.t-li {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; color: #fff;
+}
+.panel { pointer-events: none; }
+
+/* ----------------------------------------------------------------- sliders */
+.gal { overflow: hidden; }
+.gal-scroll {
+  height: 100%;
+  overflow-x: auto; overflow-y: hidden;
+  padding-right: 10px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.gal-scroll::-webkit-scrollbar { display: none; }
+
+.spk-row { display: flex; gap: 10px; scroll-snap-type: x mandatory; }
+.si { flex: 0 0 242px; width: 242px; height: 465px; margin: 0; scroll-snap-align: start; }
+.si img { display: block; width: 242px; height: 323px; object-fit: cover; -webkit-user-drag: none; }
+.si figcaption { height: 142px; padding: 15px 0; text-align: center; color: #293323; overflow: hidden; }
+.st {
+  font-family: var(--font-avenir); font-weight: 800; font-size: 22px; line-height: 27px;
+  letter-spacing: -.01em; margin-bottom: 6px; overflow: hidden;
+}
+.st1 { white-space: nowrap; }
+.sd {
+  font-family: var(--font-avenir); font-weight: 300; font-size: 15px; line-height: 18px;
+  display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+}
+.sd span { white-space: normal; }
+
+.gal-grid {
+  display: grid; grid-auto-flow: column;
+  grid-template-rows: repeat(3, 145px); grid-auto-columns: 145px; gap: 10px;
+}
+.gi { display: block; width: 145px; height: 145px; overflow: hidden; }
+.gi img { display: block; width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; }
+
+.ar {
+  position: absolute; z-index: 2; padding: 0; border: 0; background: none; cursor: pointer;
+  width: 23px; height: 39px; transform: translateY(-50%);
+}
+.ar-l { transform: translateY(-50%) scaleX(-1); }
+.ar[hidden] { display: none; }
+.spk-gal .ar { height: 35px; }
+.ar-svg { display: block; fill: #CFE6C2; filter: drop-shadow(0 0 2px rgba(0, 0, 0, .35)); transform-origin: 0 0; }
+
+/* -------------------------------------------------------------- coordinators */
+.coord { position: absolute; left: 0; top: 2px; width: 100%; height: 1088px; border: 0; background: #f5f7fa; }
+
+/* ----------------------------------------------------------------- gallery title */
+.gtitle {
+  font-family: var(--font-avenir); font-weight: 800; font-size: 99.6px; line-height: 122px;
+  letter-spacing: -.01em; text-align: center; margin: 0;
+  color: transparent;
+  background-image:
+    radial-gradient(circle at 60.75% 73%, rgb(255, 204, 0) 0%, 17.5%, rgba(255, 204, 0, 0) 35%),
+    radial-gradient(circle at 94.4167% 20.3333%, rgb(255, 204, 0) 0%, 17.5%, rgba(255, 204, 0, 0) 35%),
+    radial-gradient(circle at 38.0833% 52.3333%, rgb(207, 230, 194) 0%, 20%, rgba(207, 230, 194, 0) 40%),
+    radial-gradient(circle at 84.4167% 62.3333%, rgba(164, 204, 141, 0.99) 0%, 25%, rgba(164, 204, 141, 0) 50%),
+    radial-gradient(circle at 11.75% 76.3333%, rgb(255, 204, 0) 0%, 42%, rgba(255, 204, 0, 0) 70%),
+    radial-gradient(circle at 94.4167% 81%, rgb(41, 51, 35) 0%, 42%, rgba(41, 51, 35, 0) 70%),
+    radial-gradient(circle at 48.9014% 49.5215%, rgb(207, 230, 194) 0%, 100%, rgba(207, 230, 194, 0) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------------- contact */
+.map { border: 0; display: block; }
+.up { background: #A4CC8D; border-radius: 200px; transition: background-color .2s; }
+.up svg { fill: #fff; display: block; }
+
+/* ------------------------------------------------------------------ footer */
+#site-footer { position: relative; height: 192px; background: #A4CC8D; }
+.fcred {
+  font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 12px; line-height: normal;
+  color: #000; text-align: center; text-decoration: none; white-space: nowrap;
+}
+
+/* justified paragraph rendered line-by-line so the breaks match the original exactly */
+.jl { display: block; text-align: justify; text-align-last: justify; }
+.jlast { text-align-last: left; }
+
+/* ------------------------------------------------------------------- hover
+   Values copied from the original site's :hover rules (all with .2s transitions). */
+.btn:hover { background: #CFE6C2; border-color: #293323; }
+.btn:hover .t-btn { color: #293323; font-family: var(--font-nimbus); font-weight: 400; font-size: 14px; }
+.pill:hover { background: #293323; border-radius: 12px; }
+.pill:hover span { color: #CFE6C2; font-size: 17px; font-weight: 700; font-style: italic; }
+.btn2:hover { background: #fff; border-radius: 20px; }

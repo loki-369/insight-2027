@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Maps</title>
+<style>html,body,#map{height:100%;margin:0}body{font-family:Roboto,Arial,sans-serif}.iw a{color:#1a0dab}</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+/*
+ The original page used Wix's built-in Google Map element (same location, same grayscale style,
+ same pin + "Directions" bubble). Wix's own Google key only works on Wix domains, so to get the
+ exact same styled map on your own domain, paste YOUR Google Maps JavaScript API key below
+ (Google Cloud Console -> APIs & Services -> enable "Maps JavaScript API" -> create an API key,
+ and restrict it to your website's domain).
+ Until a key is set, a standard Google Maps embed centred on the same spot is shown instead.
+*/
+var API_KEY = '';
+
+var POS = { lat: 10.8785987, lng: 76.0772057 };
+var TITLE = 'MES Keveeyam College';
+
+if (!API_KEY) {
+  location.replace('https://maps.google.com/maps?q=' + POS.lat + ',' + POS.lng + '&z=14&hl=en&output=embed');
+} else {
+  window.initMap = function () {
+    var style = [{"elementType":"geometry","featureType":"water","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"elementType":"geometry","featureType":"landscape","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"elementType":"geometry.fill","featureType":"road.highway","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"elementType":"geometry.stroke","featureType":"road.highway","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"elementType":"geometry","featureType":"road.arterial","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"elementType":"geometry","featureType":"road.local","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"elementType":"geometry","featureType":"poi","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"elementType":"geometry","featureType":"poi.park","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"elementType":"geometry","featureType":"transit","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"elementType":"geometry.fill","featureType":"administrative","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"elementType":"geometry.stroke","featureType":"administrative","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}];
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: POS, zoom: 14, mapTypeId: 'roadmap', styles: style,
+      zoomControl: true, mapTypeControl: true, fullscreenControl: true, streetViewControl: false
+    });
+    var marker = new google.maps.Marker({ position: POS, map: map, title: TITLE });
+    var info = new google.maps.InfoWindow({
+      content: '<div class="iw"><strong>' + TITLE + '</strong><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + POS.lat + ',' + POS.lng + '">Directions</a></div>'
+    });
+    info.open(map, marker);
+    marker.addListener('click', function () { info.open(map, marker); });
+  };
+  var s = document.createElement('script');
+  s.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(API_KEY) + '&callback=initMap&language=en&region=IN';
+  s.async = true; document.head.appendChild(s);
+}
+</script>
+</body>
+</html>
