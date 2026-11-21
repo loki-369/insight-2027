@@ -27,14 +27,60 @@
   });
 })();
 
-/* Narrow screens: the desktop layout is 980px wide. Until a dedicated mobile layout exists,
-   scale it down to fit so nothing is cut off or scrolls sideways. */
+/* Scaling. Phones (<768px) get the dedicated 320px mobile layout (#m), scaled to the screen width.
+   768-979px: the desktop layout is 980px wide, so scale it down to fit. */
 (function () {
-  var BASE = 980;
+  var m = document.getElementById('m');
   function fit() {
     var w = document.documentElement.clientWidth || window.innerWidth;
-    document.documentElement.style.zoom = w < BASE ? String(w / BASE) : '';
+    if (w < 768) {
+      document.documentElement.style.zoom = '';
+      if (m) m.style.zoom = String(w / 320);
+    } else {
+      if (m) m.style.zoom = '';
+      document.documentElement.style.zoom = w < 980 ? String(w / 980) : '';
+    }
   }
   window.addEventListener('resize', fit);
   fit();
+})();
+
+/* Mobile behaviour: header hides while scrolling down and returns on scroll up (green bar only at the very top),
+   swipeable speaker/gallery strips with arrows, and a back-to-top button. */
+(function () {
+  var m = document.getElementById('m');
+  if (!m) return;
+  var head = document.getElementById('mh');
+  var top = document.getElementById('mtop');
+  var last = 0;
+  function onScroll() {
+    var y = Math.max(0, window.pageYOffset || 0);
+    head.classList.toggle('scrolled', y > 0.5);
+    if (y > last + 4 && y > 60) head.classList.add('hide');
+    else if (y < last - 4 || y <= 0.5) head.classList.remove('hide');
+    top.hidden = y < 100;
+    last = y;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  m.querySelectorAll('.strip').forEach(function (strip) {
+    var id = strip.id;
+    var btns = m.querySelectorAll('.ar[data-strip="' + id + '"]');
+    var prev = m.querySelector('.ar-l[data-strip="' + id + '"]');
+    var next = m.querySelector('.ar-r[data-strip="' + id + '"]');
+    function upd() {
+      var max = strip.scrollWidth - strip.clientWidth - 1;
+      if (prev) prev.hidden = strip.scrollLeft <= 1;
+      if (next) next.hidden = strip.scrollLeft >= max;
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        strip.scrollBy({ left: parseFloat(b.getAttribute('data-step')) * (strip.clientWidth ? 1 : 1), behavior: 'smooth' });
+      });
+    });
+    strip.addEventListener('scroll', upd, { passive: true });
+    upd();
+  });
 })();

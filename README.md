@@ -48,8 +48,10 @@ Upload the whole folder to any static host (Netlify, Cloudflare Pages, GitHub Pa
   headings/body text look very close but not letter-for-letter identical. Poppins, Prompt and Anton
   are the real fonts. If you own licences, drop the font files in and change the three
   `--font-*` variables at the top of `css/style.css`.
-* **Mobile** – the original has a separate Wix mobile layout. This copy is the desktop layout
-  (980 px wide) scaled down to fit narrow screens, so it never scrolls sideways but text is small
-  on phones. A true mobile layout would be a separate piece of work.
+* **Mobile** – phones (< 768 px wide) get a dedicated layout rebuilt from the original's Wix
+  mobile layout (320 px design width, scaled to the screen by `js/main.js`; markup in `#m` in
+  `index.html`, styles in `css/mobile.css`). Speakers and gallery are swipeable with arrows, the
+  header hides on scroll-down and returns on scroll-up, and a back-to-top button appears.
+  768-979 px screens use the desktop layout scaled down to fit.
 * The "This website was built on Wix" banner is not included.
 * Section buttons / menu pills scroll to the matching section of the page.
