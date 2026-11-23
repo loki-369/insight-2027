@@ -44,7 +44,7 @@
 })();
 
 /* Scaling. Phones (<768px) get the dedicated 320px mobile layout (#m), scaled to the screen width.
-   768-979px: the desktop layout is 980px wide, so scale it down to fit. */
+   768-1279px: the desktop layout is designed for 1280px, so scale it down to fit. */
 (function () {
   var m = document.getElementById('m');
   function fit() {
@@ -54,7 +54,7 @@
       if (m) m.style.zoom = String(w / 320);
     } else {
       if (m) m.style.zoom = '';
-      document.documentElement.style.zoom = w < 980 ? String(w / 980) : '';
+      document.documentElement.style.zoom = w < 1280 ? String(w / 1280) : '';
     }
   }
   window.addEventListener('resize', fit);
@@ -99,4 +99,14 @@
     strip.addEventListener('scroll', upd, { passive: true });
     upd();
   });
+})();
+
+/* Mobile menu (hamburger) */
+(function () {
+  var b = document.querySelector('#m .mburger'), menu = document.getElementById('mmenu'), h = document.getElementById('mh');
+  if (!b || !menu) return;
+  function set(o) { b.setAttribute('aria-expanded', String(o)); menu.hidden = !o; h.classList.toggle('open', o); }
+  b.addEventListener('click', function () { set(menu.hidden); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
 })();

@@ -165,13 +165,6 @@ img { border: 0; }
 .up { background: #A4CC8D; border-radius: 200px; transition: background-color .2s; }
 .up svg { fill: #fff; display: block; }
 
-/* ------------------------------------------------------------------ footer */
-#site-footer { position: relative; height: 192px; background: #A4CC8D; }
-.fcred {
-  font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 12px; line-height: normal;
-  color: #000; text-align: center; white-space: nowrap;
-}
-
 /* justified paragraph rendered line-by-line so the breaks match the original exactly */
 .jl { display: block; text-align: justify; text-align-last: justify; }
 .jlast { text-align-last: left; }

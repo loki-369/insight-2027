@@ -9,6 +9,9 @@ css/generated.css   positions / sizes / text styles for every element
 js/main.js          header fade on scroll, speaker + gallery arrows, small-screen scaling
 assets/people/      portraits cropped from the official INSIGHT 5.0 poster
 assets/logos/       official KSHEC, MES and INSIGHT 5.0 logos
+subjects/<track>/     track pages (Science, Media, Literature, Social Science, Technology) + subjects/ index
+css/site.css        shared header navigation, footer and track-page styles
+js/nav.js           Tracks dropdown + mobile menu
 coordinators.html   the "Coordinators" block (same HTML as the original Wix embed, shown in an iframe)
 map.html            the Contact map (see "Map" below)
 assets/waves/*.svg  the wavy section dividers
