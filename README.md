@@ -12,7 +12,7 @@ assets/logos/       official KSHEC, MES and INSIGHT 5.0 logos
 subjects/<track>/     track pages (Science, Media, Literature, Social Science, Technology) + subjects/ index
 css/site.css        shared header navigation, footer and track-page styles
 js/nav.js           Tracks dropdown + mobile menu
-coordinators.html   the "Coordinators" block (same HTML as the original Wix embed, shown in an iframe)
+coordinators.html   standalone copy of the coordinators page (no longer embedded; the homepage renders them inline)
 map.html            the Contact map (see "Map" below)
 assets/waves/*.svg  the wavy section dividers
 tools/download_images.py   copies every image from Wix to your own folder (see step 1)
