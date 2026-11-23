@@ -1,4 +1,4 @@
-# Insight 2025 – MES Keveeyam College (self-hosted copy of the Wix site)
+# INSIGHT 5.0 (27–29 Jan 2027) – MES Keveeyam College
 
 Plain HTML + CSS + JavaScript. No build step, no framework, no Wix scripts.
 
@@ -7,6 +7,8 @@ index.html          the page (generated layout, 1:1 with the Wix desktop design)
 css/style.css       hand-written styles (fonts, buttons, hover states, header, sliders)
 css/generated.css   positions / sizes / text styles for every element
 js/main.js          header fade on scroll, speaker + gallery arrows, small-screen scaling
+assets/people/      portraits cropped from the official INSIGHT 5.0 poster
+assets/logos/       official KSHEC, MES and INSIGHT 5.0 logos
 coordinators.html   the "Coordinators" block (same HTML as the original Wix embed, shown in an iframe)
 map.html            the Contact map (see "Map" below)
 assets/waves/*.svg  the wavy section dividers
@@ -55,3 +57,6 @@ Upload the whole folder to any static host (Netlify, Cloudflare Pages, GitHub Pa
   768-979 px screens use the desktop layout scaled down to fit.
 * The "This website was built on Wix" banner is not included.
 * Section buttons / menu pills scroll to the matching section of the page.
+
+
+Content source: the official INSIGHT 5.0 poster PDF; registration links were decoded from its QR codes.

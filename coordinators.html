@@ -1,4 +1,13 @@
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INSIGHT 5.0 – Patrons, coordinators and committees</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
     /* Global Reset for better sizing */
     *,
@@ -211,124 +220,137 @@
             font-size: 1.1rem;
         }
     }
-</style>
 
+    .avatar { display: block; width: 130px; height: 156px; object-fit: cover; border-radius: var(--border-radius); margin: 0 auto 12px; background: #e8ede6; }
+    .avatar-lg { width: 180px; height: 216px; }
+    .grid-3 .card, .grid-2 .card { justify-content: flex-start; }
+    .advisory li b { font-weight: 600; }
+    .advisory li span { color: var(--text-light); }
+    @media (prefers-reduced-motion: reduce) { .card, .card:hover { transition: none; transform: none; } }
+</style>
+</head>
+<body>
 <div class="container">
     <h1 class="section-title">Our Coordinators</h1>
 
-    <!-- Chief Patron -->
     <h2 class="category-title">Chief Patron</h2>
     <div class="grid-1">
         <div class="card chief-card">
+            <img class="avatar avatar-lg" src="assets/people/fazal.webp" alt="Dr. P A Fazal Ghafoor" width="180" height="216" decoding="async">
             <div class="card-name">Dr. P A Fazal Ghafoor</div>
-            <div class="card-designation">President, MES Kerala</div>
+            <div class="card-designation">President MES Kerala</div>
         </div>
     </div>
 
-    <!-- Patrons -->
     <h2 class="category-title">Patrons</h2>
     <div class="grid-3">
         <div class="card">
-            <div class="card-name">Jb. K K Kunjimoideen</div>
-            <div class="card-designation">General Secretary</div>
-            <div class="card-role">MES Kerala</div>
+            <img class="avatar" src="assets/people/kunjimoideen.webp" alt="Jb. K K Kunjimoideen" loading="lazy" decoding="async" width="130" height="156"><div class="card-name">Jb. K K Kunjimoideen</div>
+            <div class="card-designation">General Secretary, MES Kerala</div>
         </div>
         <div class="card">
-            <div class="card-name">Jb. O C Salahudheen</div>
-            <div class="card-designation">Treasurer</div>
-            <div class="card-role">MES Kerala</div>
+            <img class="avatar" src="assets/people/salahudheen.webp" alt="Jb. O C Salahudheen" loading="lazy" decoding="async" width="130" height="156"><div class="card-name">Jb. O C Salahudheen</div>
+            <div class="card-designation">Treasurer, MES Kerala</div>
         </div>
         <div class="card">
-            <div class="card-name">Dr. K A Hashim</div>
-            <div class="card-designation">Corporate Manager</div>
-            <div class="card-role">MES Kerala</div>
+            <img class="avatar" src="assets/people/hashim.webp" alt="Dr. K A Hashim" loading="lazy" decoding="async" width="130" height="156"><div class="card-name">Dr. K A Hashim</div>
+            <div class="card-designation">Corporate Manager, MES Kerala</div>
         </div>
         <div class="card">
-            <div class="card-name">Abdul Latheef K</div>
+            <img class="avatar" src="assets/people/latheef.webp" alt="Abdul Latheef K" loading="lazy" decoding="async" width="130" height="156"><div class="card-name">Abdul Latheef K</div>
             <div class="card-designation">GST Joint Commissioner</div>
             <div class="card-role">Malappuram</div>
         </div>
         <div class="card">
-            <div class="card-name">Dr. Mohamedali P</div>
+            <img class="avatar" src="assets/people/mohamedali.webp" alt="Dr. Mohamedali P" loading="lazy" decoding="async" width="130" height="156"><div class="card-name">Dr. Mohamedali P</div>
             <div class="card-designation">Secretary</div>
             <div class="card-role">MES Keveeyam College</div>
         </div>
         <div class="card">
-            <div class="card-name">Prof. Parayil Moideenkutty</div>
+            <img class="avatar" src="assets/people/moideenkutty.webp" alt="Prof. Parayil Moideenkutty" loading="lazy" decoding="async" width="130" height="156"><div class="card-name">Prof. Parayil Moideenkutty</div>
             <div class="card-designation">Treasurer</div>
             <div class="card-role">MES Keveeyam College</div>
         </div>
     </div>
 
-    <!-- Chairman & Coordinator -->
-    <h2 class="category-title">Chairman & Coordinator</h2>
-    <div class="grid-2">
+    <h2 class="category-title">Chairman, Coordinators</h2>
+    <div class="grid-3">
         <div class="card">
-            <div class="card-name">Prof. Shajid P P</div>
-            <div class="card-designation">Principal (Chairman)</div>
+            <div class="card-name">Dr. Nisab T</div>
+            <div class="card-designation">Principal</div>
+            <div class="card-role">Chairman</div>
         </div>
         <div class="card">
-            <div class="card-name">Dr. Nabeel Rashin M</div>
+            <div class="card-name">Dr. P. C. Santhosh Babu</div>
             <div class="card-designation">Coordinator</div>
         </div>
+        <div class="card">
+            <div class="card-name">Dr. Nabeel Rashin</div>
+            <div class="card-designation">Associate Coordinator</div>
+        </div>
     </div>
 
-    <!-- Joint Coordinators -->
     <h2 class="category-title">Joint Coordinators</h2>
-    <div class="grid-2">
+    <div class="grid-3">
         <div class="card">
-            <div class="card-name">Dr. K S Krishna Prabha</div>
+            <div class="card-name">Sinija. A. S</div>
             <div class="card-designation">Joint Coordinator</div>
         </div>
         <div class="card">
-            <div class="card-name">Dr. Navas M P</div>
+            <div class="card-name">Dr. Rebeena Alavudeen</div>
+            <div class="card-designation">Joint Coordinator</div>
+        </div>
+        <div class="card">
+            <div class="card-name">Dr. Akhila Ibrahim. K. K</div>
             <div class="card-designation">Joint Coordinator</div>
         </div>
     </div>
 
-    <!-- IQAC Coordinator -->
     <h2 class="category-title">IQAC Coordinator</h2>
     <div class="grid-1">
         <div class="card" style="max-width: 400px; width:100%">
-            <div class="card-name">Dr. Nisab T</div>
+            <div class="card-name">Dr. Azhar A</div>
             <div class="card-designation">IQAC Coordinator</div>
         </div>
     </div>
 
-    <!-- International Advisory Committee -->
     <h2 class="category-title">International Advisory Committee</h2>
     <div class="list-section">
-        <ul class="bullet-list">
-            <li>Dr. P Sushtitha Menon, UKM, Malaysia</li>
-            <li>Dr. Ratheesh Kumar Meleppat, University of California, USA</li>
-            <li>Dr. Safakath Karuthedath, Tsinghua University, China</li>
-            <li>Dr. Prakash Karipoth, University of Leeds, UK</li>
-            <li>Dr. Thien-Binh Nguyen, NTU Singapore</li>
-            <li>Dr. Krishna Kumar Chullipalliyalil, Cork Institute of Technology, Ireland</li>
-            <li>Dr. Manoop Chenchiliyan, MAX IV Laboratory, Sweden</li>
-            <li>Dr. Sabu Thomas, Professor, School of Chemical Sciences, MG University, Kottayam</li>
-            <li>Dr. Sajeev Krishnan, Professor, Centre for Earth Sciences, IISc, Bangalore</li>
-            <li>Dr. Sujith A, Department of Chemistry, NIT Calicut</li>
-            <li>Dr. Vinod Kumar K P, Former Principal, MES Keveeyam College, Valanchery</li>
+        <ul class="bullet-list advisory">
+            <li><b>Prof. Mohammad Amjad Kamal</b>, <span>Professor, Novel Global Community Educational Foundation, Australia</span></li>
+            <li><b>Prof. Dr. rer. nat. Abd-ElAziem Farouk Gad</b>, <span>General Manager, Tsuno GmbH, Heidelberg</span></li>
+            <li><b>Dr. Achuthsankar. S. Nair</b>, <span>Vice Chairman, Kerala State Higher Education Council (KSHEC)</span></li>
+            <li><b>Dr. Tanmoy Saha</b>, <span>Instructor, Harvard Medical School, USA</span></li>
+            <li><b>Dr. Roza Szweda</b>, <span>Associate Professor, Adam Mickiewicz University, Poznań, Poland</span></li>
+            <li><b>Prof. Eiji Masai</b>, <span>Nagaoka University of Technology, Japan</span></li>
+            <li><b>Dr. Suneel Kateriya</b>, <span>Professor, Jawaharlal Nehru University, New Delhi</span></li>
+            <li><b>Prof. Pratyusha Tummala-Narra</b>, <span>Boston College, Chestnut Hill, MA, United States</span></li>
+            <li><b>Dr. Reshmi V Suresh</b>, <span>Assistant Professor, CHRIST Deemed to be University, Bangalore</span></li>
+            <li><b>Prof. Shajid P P</b>, <span>Vice Principal, MES Keveeyam College, Valanchery</span></li>
+            <li><b>Dr. Vinod Kumar K P</b>, <span>Former Principal, MES Keveeyam College, Valanchery</span></li>
         </ul>
     </div>
 
-    <!-- Organizing Committee -->
     <h2 class="category-title">Organizing Committee</h2>
     <div class="list-section">
         <ul class="bullet-list multi-col-list">
+            <li>Dr. Ahlam Abdul Aziz</li>
+            <li>Dr. Aneesha P</li>
+            <li>Dr. Hasan Basari</li>
+            <li>Dr. Liya</li>
+            <li>Dr. Sabira O</li>
+            <li>Farhana Nazrin P A</li>
+            <li>Fathima Suhara</li>
             <li>Dinil S</li>
-            <li>Dr. Priya T V</li>
-            <li>Dr. Reji A L</li>
-            <li>Sajna P</li>
-            <li>Jameela MK</li>
-            <li>Dr. Maya R</li>
-            <li>Dr. Sandhya PD</li>
-            <li>Sabitha V</li>
-            <li>Rasbin</li>
-            <li>Vishnupriya</li>
-            <li>Sreehari V R</li>
-            <li>Ashika T N</li>
+            <li>Mubashira K</li>
+            <li>Muhammed Sharook Khan</li>
+            <li>Naseela Ubaid</li>
+            <li>Rajani K K</li>
+            <li>Ahmed Hubab N</li>
+            <li>Salil Suresh</li>
+            <li>Shahana Sherin K</li>
         </ul>
     </div>
 </div>
+</body>
+</html>

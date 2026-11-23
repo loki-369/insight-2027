@@ -27,6 +27,22 @@
   });
 })();
 
+/* The patrons/committees page is embedded; size the frame to its content so it never shows an inner scrollbar. */
+(function () {
+  document.querySelectorAll('iframe.coord').forEach(function (f) {
+    function fit() {
+      var d = f.contentDocument;
+      if (d && d.documentElement) f.style.height = d.documentElement.scrollHeight + 'px';
+    }
+    f.addEventListener('load', function () {
+      fit();
+      var d = f.contentDocument;
+      if (d && d.body && 'ResizeObserver' in window) new ResizeObserver(fit).observe(d.body);
+    });
+    window.addEventListener('resize', fit);
+  });
+})();
+
 /* Scaling. Phones (<768px) get the dedicated 320px mobile layout (#m), scaled to the screen width.
    768-979px: the desktop layout is 980px wide, so scale it down to fit. */
 (function () {
