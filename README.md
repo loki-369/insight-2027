@@ -72,3 +72,8 @@ Content source: the official INSIGHT 5.0 poster PDF; registration links were dec
 - About: left-aligned body copy (max 720px, line-height 1.75), organiser block with hierarchy and a divider (`.ao*` in `css/site.css`, source `build/refine.css`).
 - Anchors: all sections have `scroll-margin-top`; `#registration` is an alias for the Registration section; on phones `js/main.js` maps `#x` to `#x-m`.
 - Coordinators: International Advisory and Organizing Committee are compact card grids (`.cs-dir`), 3/2/1 columns.
+
+## Flow layout (v7)
+- No fixed section heights or Wix pixel positioning remain on the desktop layout. Hero, Speakers, Registration, Gallery and Contact are generated as flow sections in `build/build2.py`; styles are in `build/flow.css` and `build/refine.css`, which `build2.py` copies into the end of `css/site.css` on every build (after the `/*==GEN==*/` marker). Do not hand-edit below that marker.
+- The page is fluid from 768px up (no zoom scaling); below 768px the separate phone layout (`#m`) is used.
+- Gallery: grid with "view all" and a lightbox (Esc, arrow keys, swipe). Photos are the local 290px thumbnails, so enlarged views are soft; add full-size originals to improve this.

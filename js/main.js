@@ -1,26 +1,57 @@
-/* Carousel arrows for the Speakers and Gallery strips (the original used Wix Pro Gallery). */
+/* Speakers carousel: scroll-snap row with prev/next buttons */
 (function () {
-  'use strict';
-  document.querySelectorAll('.gal').forEach(function (gal) {
-    var scroller = gal.querySelector('.gal-scroll');
-    var prev = gal.querySelector('.ar-l');
-    var next = gal.querySelector('.ar-r');
-    var step = gal.classList.contains('spk-gal') ? 252 : 155; // one photo / one column per click
-
-    function update() {
-      prev.hidden = scroller.scrollLeft <= 1;
-      next.hidden = scroller.scrollLeft >= scroller.scrollWidth - scroller.clientWidth - 1;
+  document.querySelectorAll('.sp-wrap').forEach(function (w) {
+    var row = w.querySelector('.sp-row'), prev = w.querySelector('.spn.l'), next = w.querySelector('.spn.r');
+    function step() { var c = row.querySelector('.spc'); return c ? c.getBoundingClientRect().width / (parseFloat(getComputedStyle(document.documentElement).zoom) || 1) + 20 : 260; }
+    function upd() {
+      prev.hidden = row.scrollLeft <= 1;
+      next.hidden = row.scrollLeft >= row.scrollWidth - row.clientWidth - 1;
     }
-    prev.addEventListener('click', function () { scroller.scrollBy({ left: -step, behavior: 'smooth' }); });
-    next.addEventListener('click', function () { scroller.scrollBy({ left: step, behavior: 'smooth' }); });
-    scroller.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    prev.addEventListener('click', function () { row.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { row.scrollBy({ left: step(), behavior: 'smooth' }); });
+    row.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  });
+})();
+
+/* Gallery: "view all" toggle + lightbox (Escape, arrow keys, buttons, swipe) */
+(function () {
+  document.querySelectorAll('.gl').forEach(function (g) {
+    var grid = g.querySelector('.gl-grid'), more = g.querySelector('.gl-more'), lb = g.querySelector('.lb');
+    var items = [].slice.call(grid.querySelectorAll('.gl-item'));
+    var img = lb.querySelector('img'), cap = lb.querySelector('figcaption'), cur = 0, opener = null, tx = null;
+    if (more) more.addEventListener('click', function () {
+      var o = grid.classList.toggle('open'); more.setAttribute('aria-expanded', String(o));
+      more.textContent = o ? 'Show fewer photos' : 'View all ' + items.length + ' photos';
+    });
+    function show(n) {
+      cur = (n + items.length) % items.length;
+      var s = items[cur].querySelector('img');
+      img.src = s.currentSrc || s.src; img.alt = 'INSIGHT 2025 photo ' + (cur + 1) + ' of ' + items.length;
+      cap.textContent = (cur + 1) + ' / ' + items.length;
+    }
+    function open(n) { opener = document.activeElement; show(n); lb.hidden = false; document.documentElement.style.overflow = 'hidden'; lb.querySelector('.lb-x').focus(); }
+    function close() { lb.hidden = true; document.documentElement.style.overflow = ''; if (opener) opener.focus(); }
+    items.forEach(function (it, i) { it.addEventListener('click', function () { open(i); }); });
+    lb.querySelector('.lb-x').addEventListener('click', close);
+    lb.querySelector('.lb-p').addEventListener('click', function () { show(cur - 1); });
+    lb.querySelector('.lb-n').addEventListener('click', function () { show(cur + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    lb.addEventListener('touchstart', function (e) { tx = e.changedTouches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) { if (tx === null) return; var d = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(d) > 50) show(cur + (d < 0 ? 1 : -1)); }, { passive: true });
+    document.addEventListener('keydown', function (e) {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(cur - 1);
+      else if (e.key === 'ArrowRight') show(cur + 1);
+      else if (e.key === 'Tab') { var f = [].slice.call(lb.querySelectorAll('button')); var i = f.indexOf(document.activeElement); e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus(); }
+    });
   });
 })();
 
 /* Scaling. Phones (<768px) get the dedicated 320px mobile layout (#m), scaled to the screen width.
-   768-1279px: the desktop layout is designed for 1280px, so scale it down to fit. */
+   768px and up: fluid flow layout, no scaling. */
 (function () {
   var m = document.getElementById('m');
   function fit() {
@@ -30,8 +61,7 @@
       if (m) m.style.zoom = String(w / 320);
     } else {
       if (m) m.style.zoom = '';
-      document.documentElement.style.zoom = w < 1280 ? String(w / 1280) : '';
-      document.documentElement.style.setProperty('--zi', w < 1280 ? String(1280 / w) : '1');
+      document.documentElement.style.zoom = '';
     }
   }
   window.addEventListener('resize', fit);
@@ -109,4 +139,16 @@
   }
   window.addEventListener('hashchange', jump);
   window.addEventListener('load', function () { jump(); setTimeout(jump, 300); });
+})();
+
+/* Phone speakers: "view all" toggle */
+(function () {
+  document.querySelectorAll('.mx-more').forEach(function (b) {
+    var t = document.getElementById(b.getAttribute('data-for'));
+    if (!t) return;
+    b.addEventListener('click', function () {
+      var o = t.classList.toggle('open'); b.setAttribute('aria-expanded', String(o));
+      b.textContent = o ? 'Show fewer ' + b.getAttribute('data-what') : 'View all ' + b.getAttribute('data-n') + ' ' + b.getAttribute('data-what');
+    });
+  });
 })();
