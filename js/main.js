@@ -1,4 +1,4 @@
-/* Header: green bar only at the top of the page (fades out once scrolled, like the original). */
+/* Header: solid white bar; a soft shadow appears once the page is scrolled. */
 (function () {
   var hdr = document.getElementById('site-header');
   function onScroll() { hdr.classList.toggle('scrolled', (window.pageYOffset || 0) > 0.5); }
@@ -39,6 +39,7 @@
     } else {
       if (m) m.style.zoom = '';
       document.documentElement.style.zoom = w < 1280 ? String(w / 1280) : '';
+      document.documentElement.style.setProperty('--zi', w < 1280 ? String(1280 / w) : '1');
     }
   }
   window.addEventListener('resize', fit);
@@ -85,13 +86,27 @@
   });
 })();
 
-/* Mobile menu (hamburger) */
+/* Mobile menu (hamburger): Escape closes and returns focus, Subjects is an accordion */
 (function () {
   var b = document.querySelector('#m .mburger'), menu = document.getElementById('mmenu'), h = document.getElementById('mh');
   if (!b || !menu) return;
-  function set(o) { b.setAttribute('aria-expanded', String(o)); menu.hidden = !o; h.classList.toggle('open', o); }
+  var acc = menu.querySelector('.mdd>button'), accl = document.getElementById('mdd-l');
+  function set(o, back) {
+    b.setAttribute('aria-expanded', String(o)); b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
+    menu.hidden = !o; h.classList.toggle('open', o);
+    document.documentElement.style.overflow = o ? 'hidden' : '';
+    if (o) { var f = menu.querySelector('a'); if (f) f.focus({ preventScroll: true }); } else if (back) b.focus();
+  }
   b.addEventListener('click', function () { set(menu.hidden); });
+  if (acc) acc.addEventListener('click', function () { var o = accl.hidden; accl.hidden = !o; acc.setAttribute('aria-expanded', String(o)); });
   menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
-  document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target) && !b.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !menu.hidden) set(false, true);
+    if (e.key === 'Tab' && !menu.hidden) {
+      var els = [b].concat([].slice.call(menu.querySelectorAll('a,button')).filter(function (x) { return x.offsetParent !== null; }));
+      var i = els.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); els[els.length - 1].focus(); }
+      else if (!e.shiftKey && i === els.length - 1) { e.preventDefault(); els[0].focus(); }
+    }
+  });
 })();

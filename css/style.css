@@ -33,24 +33,6 @@ img { border: 0; }
 
 .a { position: absolute; }
 
-/* ------------------------------------------------------------------ header */
-#site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  height: 84px;
-}
-#site-header .hbar { position: absolute; inset: 0; background: #A4CC8D; transition: opacity .3s ease; }
-/* the original header is only green at the very top of the page and turns transparent as soon as you scroll */
-#site-header.scrolled .hbar { opacity: 0; }
-#site-header .a img { display: block; width: 100%; height: 100%; }
-.hlogos {
-  display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 16px;
-  background: #fff; border-radius: 20px;
-}
-.hlogos a { display: block; }
-#site-header .hlogos img { display: block; width: auto; }
-
 /* ---------------------------------------------------------------- sections */
 .sec { position: relative; width: 100%; overflow: hidden; }
 .bgimg {

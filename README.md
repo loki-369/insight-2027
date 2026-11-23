@@ -63,3 +63,7 @@ Upload the whole folder to any static host (Netlify, Cloudflare Pages, GitHub Pa
 
 
 Content source: the official INSIGHT 5.0 poster PDF; registration links were decoded from its QR codes.
+
+## Header and hero (v4)
+- One full-width white header bar (`.site-hdr`, built by `build/shared.py` `header()`); desktop inline nav with a Subjects dropdown and a single Register Now button; below 1024px a hamburger drawer (`js/nav.js`, phone layout in `js/main.js`).
+- Hero: one primary button (Register Now) and two outline buttons (Abstract Submission, Submit Full Paper), a date badge, and a single clean wave (`assets/waves/clean.svg`) in place of the stacked bands.
