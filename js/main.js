@@ -118,6 +118,7 @@
   b.addEventListener('click', function () { set(menu.hidden); });
   if (acc) acc.addEventListener('click', function () { var o = accl.hidden; accl.hidden = !o; acc.setAttribute('aria-expanded', String(o)); });
   menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target) && !b.contains(e.target)) set(false); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !menu.hidden) set(false, true);
     if (e.key === 'Tab' && !menu.hidden) {
@@ -141,14 +142,3 @@
   window.addEventListener('load', function () { jump(); setTimeout(jump, 300); });
 })();
 
-/* Phone speakers: "view all" toggle */
-(function () {
-  document.querySelectorAll('.mx-more').forEach(function (b) {
-    var t = document.getElementById(b.getAttribute('data-for'));
-    if (!t) return;
-    b.addEventListener('click', function () {
-      var o = t.classList.toggle('open'); b.setAttribute('aria-expanded', String(o));
-      b.textContent = o ? 'Show fewer ' + b.getAttribute('data-what') : 'View all ' + b.getAttribute('data-n') + ' ' + b.getAttribute('data-what');
-    });
-  });
-})();

@@ -16,7 +16,10 @@
   if (btn) btn.addEventListener('click', function (e) {
     e.stopPropagation(); var o = dd.classList.toggle('open'); btn.setAttribute('aria-expanded', String(o));
   });
-  document.addEventListener('click', function (e) { if (dd && !dd.contains(e.target)) closeDD(); });
+  document.addEventListener('click', function (e) {
+    if (dd && !dd.contains(e.target)) closeDD();
+    if (nav && burger && nav.classList.contains('open') && !nav.contains(e.target) && !burger.contains(e.target)) setMenu(false);
+  });
   document.addEventListener('keydown', function (e) {
     var open = nav && nav.classList.contains('open');
     if (e.key === 'Escape') { if (open) setMenu(false, true); else if (dd && dd.classList.contains('open')) { closeDD(); btn.focus(); } }
