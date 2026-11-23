@@ -1,11 +1,3 @@
-/* Header: solid white bar; a soft shadow appears once the page is scrolled. */
-(function () {
-  var hdr = document.getElementById('site-header');
-  function onScroll() { hdr.classList.toggle('scrolled', (window.pageYOffset || 0) > 0.5); }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-
 /* Carousel arrows for the Speakers and Gallery strips (the original used Wix Pro Gallery). */
 (function () {
   'use strict';
@@ -56,9 +48,6 @@
   var last = 0;
   function onScroll() {
     var y = Math.max(0, window.pageYOffset || 0);
-    head.classList.toggle('scrolled', y > 0.5);
-    if (y > last + 4 && y > 60) head.classList.add('hide');
-    else if (y < last - 4 || y <= 0.5) head.classList.remove('hide');
     top.hidden = y < 100;
     last = y;
   }
@@ -94,7 +83,6 @@
   function set(o, back) {
     b.setAttribute('aria-expanded', String(o)); b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
     menu.hidden = !o; h.classList.toggle('open', o);
-    document.documentElement.style.overflow = o ? 'hidden' : '';
     if (o) { var f = menu.querySelector('a'); if (f) f.focus({ preventScroll: true }); } else if (back) b.focus();
   }
   b.addEventListener('click', function () { set(menu.hidden); });
