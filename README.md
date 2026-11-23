@@ -67,3 +67,8 @@ Content source: the official INSIGHT 5.0 poster PDF; registration links were dec
 ## Header and hero (v4)
 - One full-width light-green (#A2C98A) header bar that scrolls with the page (`.site-hdr`, not sticky, built by `build/shared.py` `header()`); desktop inline nav with a Subjects dropdown and a single Register Now button; below 1024px a hamburger drawer (`js/nav.js`, phone layout in `js/main.js`).
 - Hero: one primary button (Register Now) and two outline buttons (Abstract Submission, Submit Full Paper), a date badge, and a layered hero-bottom wave (`assets/waves/clean.svg`) and thin accent bands under the header.
+
+## Typography, anchors, committee layout (v6)
+- About: left-aligned body copy (max 720px, line-height 1.75), organiser block with hierarchy and a divider (`.ao*` in `css/site.css`, source `build/refine.css`).
+- Anchors: all sections have `scroll-margin-top`; `#registration` is an alias for the Registration section; on phones `js/main.js` maps `#x` to `#x-m`.
+- Coordinators: International Advisory and Organizing Committee are compact card grids (`.cs-dir`), 3/2/1 columns.

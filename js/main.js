@@ -98,3 +98,15 @@
     }
   });
 })();
+
+/* Anchor links on phones: the phone layout uses "-m" ids, so map #gallery -> #gallery-m (also for /#gallery from the sub pages). */
+(function () {
+  function jump() {
+    var h = (location.hash || '').slice(1);
+    if (!h || (document.documentElement.clientWidth || innerWidth) >= 768) return;
+    var t = document.getElementById(h + '-m');
+    if (t) t.scrollIntoView({ behavior: 'auto', block: 'start' });
+  }
+  window.addEventListener('hashchange', jump);
+  window.addEventListener('load', function () { jump(); setTimeout(jump, 300); });
+})();
