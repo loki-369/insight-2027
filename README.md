@@ -82,3 +82,8 @@ Content source: the official INSIGHT 5.0 poster PDF; registration links were dec
 - `build/allspk.py` renders the "View all speakers" panel (30 people) under the speakers carousel; data in `build/rp.json` (extracted from RP_INSIGHT-5.0.pdf) plus poster data in `build/people.py`.
 - Animated with a `grid-template-rows 0fr→1fr` transition (`.as-*` in `build/flow.css`), respects `prefers-reduced-motion`; without JS everything is visible. Toggle logic: end of `js/main.js`.
 - Dr. Bindhu Nair has no bio (none supplied). Removed: Prof. Mamiyil Sabu, Dr. B. Krishnakumar, Dr. J. K. Vijayakumar.
+
+## v11 – Speaker profile dialog + audit fixes
+- "View profile" opens an accessible dialog (Esc, backdrop click, focus trap, scroll lock; bottom sheet on phones) from BOTH the carousel and the all-speakers grid. Data: `data/profiles.json` (built by `build/allspk.py`), loaded lazily on idle.
+- Fonts consolidated: Anton, Poppins, Nunito Sans only (Prompt and Archivo Narrow removed); Nunito now loads weights 400–800 (previously only 300/800).
+- Footer links on small screens have 40px+ touch targets.

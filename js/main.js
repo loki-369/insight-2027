@@ -143,7 +143,7 @@
 })();
 
 
-/* All-speakers dropdown + per-speaker profile toggles (progressive enhancement: without JS everything is visible). */
+/* All-speakers dropdown (toggle) + speaker profile dialog. Progressive enhancement: without JS the list is simply visible. */
 (function () {
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest && ev.target.closest('[data-acc]');
@@ -159,5 +159,51 @@
       var r = b.getBoundingClientRect();
       if (r.top < 0 || r.top > innerHeight) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  });
+
+  var data = null, loading = null, last = null;
+  function load() {
+    if (data) return Promise.resolve(data);
+    if (!loading) loading = fetch('data/profiles.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { data = j; return j; }).catch(function () { loading = null; return null; });
+    return loading;
+  }
+  if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 4000 }); else setTimeout(load, 2500);
+  function el(tag, cls, txt) { var n = document.createElement(tag); if (cls) n.className = cls; if (txt) n.textContent = txt; return n; }
+  function focusables(root) { return [].slice.call(root.querySelectorAll('button,a[href],[tabindex]:not([tabindex="-1"])')).filter(function (n) { return n.offsetParent !== null; }); }
+  function close() {
+    var m = document.getElementById('pf'); if (!m || m.hidden) return;
+    m.classList.remove('on'); document.documentElement.classList.remove('pf-lock');
+    setTimeout(function () { m.hidden = true; if (last && last.focus) last.focus({ preventScroll: true }); }, matchMedia('(prefers-reduced-motion:reduce)').matches ? 0 : 260);
+  }
+  function open(key, from) {
+    var m = document.getElementById('pf'); if (!m) return;
+    load().then(function (d) {
+      var p = d && d[key]; if (!p) return;
+      last = from;
+      var img = m.querySelector('.pf-img'); img.src = 'assets/people/' + key + '.webp'; img.alt = p.n;
+      m.querySelector('.pf-t').textContent = p.n;
+      var dd = m.querySelector('.pf-d'); dd.textContent = '';
+      p.h.forEach(function (l) { dd.appendChild(el('span', '', l)); });
+      var bio = m.querySelector('.pf-bio'); bio.textContent = '';
+      p.b.forEach(function (t) { bio.appendChild(el('p', '', t)); });
+      m.querySelector('.pf-sc').scrollTop = 0;
+      m.hidden = false; document.documentElement.classList.add('pf-lock');
+      void m.offsetWidth; m.classList.add('on');
+      m.querySelector('.pf-dlg').focus({ preventScroll: true });
+    });
+  }
+  document.addEventListener('click', function (ev) {
+    var c = ev.target.closest && ev.target.closest('[data-pf-close]'); if (c) { close(); return; }
+    var b = ev.target.closest && ev.target.closest('[data-pf]'); if (b) open(b.getAttribute('data-pf'), b);
+  });
+  document.addEventListener('keydown', function (ev) {
+    var m = document.getElementById('pf'); if (!m || m.hidden) return;
+    if (ev.key === 'Escape') { ev.preventDefault(); close(); return; }
+    if (ev.key !== 'Tab') return;
+    var f = focusables(m.querySelector('.pf-dlg')); if (!f.length) return;
+    var a = document.activeElement, first = f[0], lastEl = f[f.length - 1];
+    if (a === m.querySelector('.pf-dlg')) { ev.preventDefault(); (ev.shiftKey ? lastEl : first).focus(); }
+    else if (ev.shiftKey && a === first) { ev.preventDefault(); lastEl.focus(); }
+    else if (!ev.shiftKey && a === lastEl) { ev.preventDefault(); first.focus(); }
   });
 })();
