@@ -77,3 +77,8 @@ Content source: the official INSIGHT 5.0 poster PDF; registration links were dec
 - No fixed section heights or Wix pixel positioning remain on the desktop layout. Hero, Speakers, Registration, Gallery and Contact are generated as flow sections in `build/build2.py`; styles are in `build/flow.css` and `build/refine.css`, which `build2.py` copies into the end of `css/site.css` on every build (after the `/*==GEN==*/` marker). Do not hand-edit below that marker.
 - The page is fluid from 768px up (no zoom scaling); below 768px the separate phone layout (`#m`) is used.
 - Gallery: grid with "view all" and a lightbox (Esc, arrow keys, swipe). Photos are the local 290px thumbnails, so enlarged views are soft; add full-size originals to improve this.
+
+## v10 – All-speakers dropdown
+- `build/allspk.py` renders the "View all speakers" panel (30 people) under the speakers carousel; data in `build/rp.json` (extracted from RP_INSIGHT-5.0.pdf) plus poster data in `build/people.py`.
+- Animated with a `grid-template-rows 0fr→1fr` transition (`.as-*` in `build/flow.css`), respects `prefers-reduced-motion`; without JS everything is visible. Toggle logic: end of `js/main.js`.
+- Dr. Bindhu Nair has no bio (none supplied). Removed: Prof. Mamiyil Sabu, Dr. B. Krishnakumar, Dr. J. K. Vijayakumar.

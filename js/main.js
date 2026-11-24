@@ -142,3 +142,22 @@
   window.addEventListener('load', function () { jump(); setTimeout(jump, 300); });
 })();
 
+
+/* All-speakers dropdown + per-speaker profile toggles (progressive enhancement: without JS everything is visible). */
+(function () {
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('[data-acc]');
+    if (!b) return;
+    var t = document.getElementById(b.getAttribute('aria-controls'));
+    if (!t) return;
+    var open = !t.classList.contains('open');
+    t.classList.toggle('open', open);
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var lab = b.querySelector('span');
+    if (lab) lab.textContent = open ? b.getAttribute('data-lc') : b.getAttribute('data-lo');
+    if (!open && b.classList.contains('as-tog')) {
+      var r = b.getBoundingClientRect();
+      if (r.top < 0 || r.top > innerHeight) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+})();
