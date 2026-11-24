@@ -92,3 +92,5 @@ Content source: the official INSIGHT 5.0 poster PDF; registration links were dec
 Full-bleed photos, 232px compact cards (carousel + grid), clamped text, "View profile" pinned to the card bottom.
 
 ## v13 – speaker photos show the whole face (natural ratio, no forced crop)
+
+## v14 – phone carousel: left arrow now points left (double flip removed)

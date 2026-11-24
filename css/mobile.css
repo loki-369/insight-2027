@@ -38,7 +38,7 @@ body{min-width:0}body>*:not(#m):not(script):not(#pf){display:none!important}html
 #m .sc figcaption b{display:block;font-size:15px;line-height:19px;margin-bottom:6px}#m .sr{display:block;font:700 9px/12px Poppins,sans-serif;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:4px}
 #m .galm .strip{padding-bottom:30px}#m .galm .strip img{flex:0 0 auto;width:96px;height:92px;object-fit:cover}
 #m .gt{font:800 38px/48px "Nunito Sans",sans-serif;text-align:center;padding:30px 0 14px;background:linear-gradient(90deg,#cfe6c2,#a4cc8d);-webkit-background-clip:text;background-clip:text;color:transparent}
-#m .ar{position:absolute;top:45%;width:30px;height:30px;padding:0;border:0;border-radius:50%;background:rgba(17,46,32,.55);color:#cfe6c2;cursor:pointer;z-index:3}#m .ar svg{width:100%;height:100%}#m .ar-r{right:6px}#m .ar-l{left:6px}#m .ar-l svg{transform:scaleX(-1)}#m .ar[hidden]{display:none}
+#m .ar{position:absolute;top:45%;width:30px;height:30px;padding:0;border:0;border-radius:50%;background:rgba(17,46,32,.55);color:#cfe6c2;cursor:pointer;z-index:3}#m .ar svg{width:100%;height:100%}#m .ar-r{right:6px}#m .ar-l{left:6px}#m .ar[hidden]{display:none}
 #m .coordsec-m{background:#f6f8fb;line-height:0}#m .coord{display:block;width:320px;border:0}
 #m .contact{padding:0 20px 36px;font:400 14px/24px "Nunito Sans",Arial,sans-serif}#m .contact .an{padding-top:30px}#m .contact h3{font:400 22px/28px "Nunito Sans",Arial,sans-serif;letter-spacing:0;text-transform:none;margin:18px 0 8px}#m .contact p{margin-bottom:6px}
 #m .mburger{width:44px;height:44px;border:1px solid #5A8550;border-radius:8px;background:#F4F8F2;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:0;cursor:pointer}
