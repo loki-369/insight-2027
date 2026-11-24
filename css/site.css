@@ -282,6 +282,9 @@ html.pf-lock{overflow:hidden;scrollbar-gutter:stable}
 .as-meta .pf-btn{margin-top:auto;min-height:36px;padding:0 18px;font-size:11px}
 .as-grid{gap:22px}
 .spc img,.as-card>img{flex:none}
+/* faces: show the whole photo (natural ratio ~0.83), never let the width/height attributes force a crop */
+.spc img,.as-card>img{height:auto!important;aspect-ratio:640/772;object-fit:cover;object-position:50% 12%}
+.pf-img{object-position:50% 12%}
 
 @media (max-width:900px){.cs .cs-dir,.cs .cs-dir.two{grid-template-columns:repeat(2,minmax(0,1fr))}.ao-name{font-size:22px;line-height:30px}.about-p{font-size:17px!important}}
 @media (max-width:560px){.cs .cs-dir,.cs .cs-dir.two{grid-template-columns:minmax(0,1fr)}}
