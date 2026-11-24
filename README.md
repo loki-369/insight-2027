@@ -87,3 +87,6 @@ Content source: the official INSIGHT 5.0 poster PDF; registration links were dec
 - "View profile" opens an accessible dialog (Esc, backdrop click, focus trap, scroll lock; bottom sheet on phones) from BOTH the carousel and the all-speakers grid. Data: `data/profiles.json` (built by `build/allspk.py`), loaded lazily on idle.
 - Fonts consolidated: Anton, Poppins, Nunito Sans only (Prompt and Archivo Narrow removed); Nunito now loads weights 400–800 (previously only 300/800).
 - Footer links on small screens have 40px+ touch targets.
+
+## v12 – Speaker cards
+Full-bleed photos, 232px compact cards (carousel + grid), clamped text, "View profile" pinned to the card bottom.
